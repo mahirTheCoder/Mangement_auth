@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-
 // ----------all routes
 const teacher = require("./get_teacher");
 const student = require("./get_student");
@@ -13,15 +12,13 @@ const { authMiddleware } = require("../../middleware/authMiddleware");
 const { requireAdmin } = require("../../middleware/roleCheckMiddleware");
 
 
-// ----------all routes 
-
-router.use( authMiddleware, requireAdmin);
+// ----------all routes
+router.use(authMiddleware, requireAdmin);
 router.use("/admin", alluser);
 router.use("/admin", approveduser);
 router.use("/admin", delluser);
 router.use("/admin", pending);
 router.use("/admin", teacher);
 router.use("/admin", student);
-
 
 module.exports = router;

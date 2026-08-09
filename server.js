@@ -25,12 +25,11 @@ app.use(
 // ---------- Middleware 
 app.use(express.json());
 app.use(cookieParser());
-
 // ---------- Routes 
 app.use(router);
-
 // ---------- Database 
 dbConfig();
+
 
 // ---------- Server 
 app.listen(PORT, () => {

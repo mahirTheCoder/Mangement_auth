@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Signin = require("./signInRoute");
-const Signup = require ('./signUpRoute')
+const Signup = require("./signUpRoute");
 const VerifyOtp = require("./verifyOtp.route");
 const resendOtp = require("./resendOtpRoute");
 const getProfile = require("./getProfileRoute");
@@ -12,8 +12,8 @@ const resetPassword = require("./resetPasswordRoute");
 const logout = require("./logout_route");
 
 
-
-router.use("/auth", Signup );
+// -----all  routes
+router.use("/auth", Signup);
 router.use("/auth", Signin);
 router.use("/auth", VerifyOtp);
 router.use("/auth", resendOtp);
