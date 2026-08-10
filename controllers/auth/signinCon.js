@@ -7,11 +7,10 @@ const {
 // Cookie Configuration
 const cookieConfig = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: "strict",
-  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 Days
+  secure: false,
+  sameSite: "lax",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
 };
-
 // ---------------- Signin Controller ----------------
 const signin = async (req, res) => {
   const { email, password } = req.body;
