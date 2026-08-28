@@ -12,9 +12,10 @@ module.exports = { cloudinary };
 
 // PORT = 8000
 // BASE_URL=/api/v1
-// DB_URL=mongodb+srv://management:LCjhehBpkzyuCifi@cluster0.mjewgzf.mongodb.net/hazira?appName=Cluster0
+// DB_URL=mongodb+srv://management:2eyK9eMrohyL5bLK@cluster0.mjewgzf.mongodb.net/hazira?appName=Cluster0
 
 // JWT_SEC=kdfjdfhnjdhfkjdfh
+
 
 
 // CLOUD_NAME=db21zycb0
@@ -22,4 +23,7 @@ module.exports = { cloudinary };
 // API_SECRET=EymGXIZDwKF7WfcEwayZfYZyN30
 
 // CLIENT_URL=http://localhost:5173
+
+// USER_EMAIL=mahirthecoder.bd@gmail.com
+// USER_PASS=acgg rmko tyze jshm
 

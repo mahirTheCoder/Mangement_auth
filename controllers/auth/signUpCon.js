@@ -32,7 +32,7 @@ const signup = async (req, res) => {
       role,
       otp,
       otpExpires: Date.now() + 5 * 60 * 1000,
-      isApproved: role === "student" ? true : false,
+      isApproved: role === "admin"
     });
 
     // ---------send otp to user mail
