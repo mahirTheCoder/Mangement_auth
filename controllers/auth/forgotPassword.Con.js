@@ -3,8 +3,6 @@ const { isValidEmail } = require("../../helpers/utils");
 const userSchema = require("../../models/userSchema");
 const { mailSender } = require("../../helpers/mailService");
 
-
-
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
 
@@ -26,7 +24,6 @@ const forgotPassword = async (req, res) => {
 
     // -------- Find User
     const user = await userSchema.findOne({ email });
-
 
     if (!user) {
       return res.status(200).json({
@@ -69,7 +66,7 @@ const forgotPassword = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      user
+      user,
     });
   } catch (error) {
     console.error(error);

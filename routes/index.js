@@ -10,11 +10,15 @@ const adminRoutes = require("./admin_route");
 const classRoutes = require("./class_route");
 const subjectRoutes = require("./subjct_route");
 const noticeRoutes = require("./notice_route");
+const payments = require("./payment");
+
 
 router.use(baseUrl, authRoutes);
 router.use(baseUrl, adminRoutes);
 router.use(baseUrl, classRoutes);
 router.use(baseUrl, subjectRoutes);
 router.use(baseUrl, noticeRoutes);
+router.use(baseUrl, payments);
+
 
 module.exports = router;
