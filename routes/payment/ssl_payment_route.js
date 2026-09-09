@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const { payment } = require('../../controllers/payment/payment_controller');
 
 
-router.get('/payments', ()=>{
-    console.log('payment route is working');
-} );
+router.post('/ssl', payment);
 
 
 module.exports = router;
