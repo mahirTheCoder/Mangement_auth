@@ -2,8 +2,11 @@ const SSLCommerzPayment = require("sslcommerz-lts");
 
 const store_id = process.env.STORE_ID;
 const store_passwd = process.env.STORE_PASSWD;
-const is_live = process.env.IS_LIVE === "true";
+const is_live = process.env.IS_LIVE;
 
+const CLINT_URL = process.env.CLIENT_URL || "http://localhost:5173"; // Replace with your client URL
+const BACKEND_URL = process.env.BACKEND_URL || `http://localhost:${process.env.PORT || 8000}`; // Replace with your backend URL
+const API_BASE_URL = process.env.API_BASE_URL || "/api/v1"; // Replace with your API base URL
 // -----------profile controllerp
 const payment = async (req, res) => {
 //   console.log("Payment request received:", req.body);
@@ -12,10 +15,10 @@ const payment = async (req, res) => {
     total_amount: 100,
     currency: "BDT",
     tran_id: "REF123", // use unique tran_id for each api call
-    success_url: `${process.env.CLIENT_URL}/payment`,
-    fail_url: "http://localhost:3030/fail",
-    cancel_url: "http://localhost:3030/cancel",
-    ipn_url: "http://localhost:3030/ipn",
+    success_url: `${BACKEND_URL}${API_BASE_URL}/payment`,
+    fail_url: `${BACKEND_URL}${API_BASE_URL}/fail`,
+    cancel_url: `${BACKEND_URL}${API_BASE_URL}/cancel`,
+    ipn_url: `${BACKEND_URL}${API_BASE_URL}/ipn`,
     shipping_method: "Courier",
     product_name: "Computer.",
     product_category: "Electronic",
@@ -44,10 +47,33 @@ const payment = async (req, res) => {
     // let GatewayPageURL = apiResponse.GatewayPageURL;
     // res.redirect(GatewayPageURL);
     // console.log("Redirecting to: ", GatewayPageURL);
-    res.status(200).json(apiResponse.GetwayPageURL);
-  });
+    res.status(200).json(apiResponse);
+  })
+  .catch((error) => {
+    console.error("Error initializing payment:", error);
+    res.status(500).json({ error: "Failed to initialize payment" });
+  })
+
 };
+
+
+// ------redirect clint 
+const redirectClient =(path) => (req, res) => {
+res.redirect(`${CLINT_URL}${path}`);
+}
+
+
+// ---------payment success 
+const paymentSuccess = redirectClient('/payment');
+const paymentFail = redirectClient('/payment/fail');
+const paymentCancel = redirectClient('/payment/cancel');
 
 module.exports = {
   payment,
+  redirectClient,
+  paymentSuccess,
+  paymentFail,
+  paymentCancel
 };
+
+

@@ -3,7 +3,7 @@ const router = express.Router();
 const { payment } = require('../../controllers/payment/payment_controller');
 
 
-router.post('/ssl', payment);
+router.get('/ssl', payment);
 
 
 module.exports = router;
