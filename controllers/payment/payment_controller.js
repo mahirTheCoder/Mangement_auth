@@ -12,7 +12,7 @@ const payment = async (req, res) => {
     total_amount: 100,
     currency: "BDT",
     tran_id: "REF123", // use unique tran_id for each api call
-    success_url: "http://localhost:3030/success",
+    success_url: `${process.env.CLIENT_URL}/payment`,
     fail_url: "http://localhost:3030/fail",
     cancel_url: "http://localhost:3030/cancel",
     ipn_url: "http://localhost:3030/ipn",
@@ -44,8 +44,7 @@ const payment = async (req, res) => {
     // let GatewayPageURL = apiResponse.GatewayPageURL;
     // res.redirect(GatewayPageURL);
     // console.log("Redirecting to: ", GatewayPageURL);
-    console.log("API Response:", apiResponse);
-    res.status(200).json(apiResponse);
+    res.status(200).json(apiResponse.GetwayPageURL);
   });
 };
 
