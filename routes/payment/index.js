@@ -1,12 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const sslpayments = require('./ssl_payment_route');
-const { authMiddleware } = require('../../middleware/authMiddleware');
+const sslpayments = require("./ssl_payment_route");
+const { payment } = require("../../controllers/payment/payment_controller");
 
-router.use(authMiddleware);
+const { authMiddleware } = require("../../middleware/authMiddleware");
 
-router.use('/payment', sslpayments) ;
+// Payment callback routes
+// এগুলো auth ছাড়া থাকবে
+router.use("/payment", sslpayments);
 
+// Payment initialize
+// এটা protected থাকবে
+router.post("/payment/init", authMiddleware, payment);
 
 module.exports = router;

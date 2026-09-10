@@ -1,9 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { payment } = require('../../controllers/payment/payment_controller');
 
+const {
+  paymentSuccess,
+  paymentFail,
+  paymentCancel,
+  payment,
+} = require("../../controllers/payment/payment_controller");
 
-router.get('/ssl', payment);
+router.get('/check', payment );
+router.post("/success", paymentSuccess);
+router.post("/fail", paymentFail);
+router.post("/cancel", paymentCancel);
 
 
 module.exports = router;
