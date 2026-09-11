@@ -15,10 +15,10 @@ const payment = async (req, res) => {
     total_amount: 100,
     currency: "BDT",
     tran_id: `REF_${Date.now()}`,
-    success_url: `${BACKEND_URL}${API_BASE_URL}/payment/success`,
-    fail_url: `${BACKEND_URL}${API_BASE_URL}/payment/fail`,
-    cancel_url: `${BACKEND_URL}${API_BASE_URL}/payment/cancel`,
-    ipn_url: `${BACKEND_URL}${API_BASE_URL}/payment/ipn`,
+    success_url: `${BACKEND_URL}${API_BASE_URL}/paymentSuccess`,
+    fail_url: `${BACKEND_URL}${API_BASE_URL}/paymentFail`,
+    cancel_url: `${BACKEND_URL}${API_BASE_URL}/paymentCancel`,
+    // ipn_url: `${BACKEND_URL}${API_BASE_URL}/paymentIpn`,
     shipping_method: "Courier",
     product_name: "Computer.",
     product_category: "Electronic",
@@ -31,7 +31,7 @@ const payment = async (req, res) => {
     cus_state: "Dhaka",
     cus_postcode: "1000",
     cus_country: "Bangladesh",
-    cus_phone: "01711111111",
+    cus_phone: "01711111111", 
     cus_fax: "01711111111",
     ship_name: "Customer Name",
     ship_add1: "Dhaka",
@@ -67,9 +67,9 @@ const redirectClient = (path) => (req, res) => {
 };
 
 // ---------payment success
-const paymentSuccess = redirectClient("/payment/success");
-const paymentFail = redirectClient("/payment/fail");
-const paymentCancel = redirectClient("/payment/cancel");
+const paymentSuccess = redirectClient("/paymentSuccess");
+const paymentFail = redirectClient("/paymentFail");
+const paymentCancel = redirectClient("/paymentCancel");
 
 module.exports = {
   payment,

@@ -6,12 +6,13 @@ const {
   paymentFail,
   paymentCancel,
   payment,
+  paymentIpn,
 } = require("../../controllers/payment/payment_controller");
 
 router.get('/check', payment );
-router.post("/success", paymentSuccess);
-router.post("/fail", paymentFail);
-router.post("/cancel", paymentCancel);
-
+router.post("/paymentSuccess", paymentSuccess);
+router.post("/paymentFail", paymentFail);
+router.post("/paymentCancel", paymentCancel);
+// router.post("/paymentIpn", paymentIpn);
 
 module.exports = router;
