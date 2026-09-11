@@ -5,9 +5,8 @@ const store_passwd = process.env.STORE_PASSWD;
 const is_live = process.env.IS_LIVE === "true";
 
 const CLINT_URL = process.env.CLIENT_URL || "http://localhost:5173"; // Replace with your client URL
-const BACKEND_URL =
-  process.env.BACKEND_URL || `http://localhost:${process.env.PORT || 8000}`; // Replace with your backend URL
-const API_BASE_URL = process.env.API_BASE_URL || "/api/v1"; // Replace with your API base URL
+const BACKEND_URL = `http://localhost:${process.env.PORT || 8000}`;
+const API_BASE_URL = process.env.BASE_URL || "/api/v1"; // Replace with your API base URL
 
 // -----------profile controllerp
 const payment = async (req, res) => {
@@ -15,10 +14,10 @@ const payment = async (req, res) => {
     total_amount: 100,
     currency: "BDT",
     tran_id: `REF_${Date.now()}`,
-    success_url: `${BACKEND_URL}${API_BASE_URL}/paymentSuccess`,
-    fail_url: `${BACKEND_URL}${API_BASE_URL}/paymentFail`,
-    cancel_url: `${BACKEND_URL}${API_BASE_URL}/paymentCancel`,
-    // ipn_url: `${BACKEND_URL}${API_BASE_URL}/paymentIpn`,
+    success_url: `${BACKEND_URL}${API_BASE_URL}/payment/payment-success`,
+    fail_url: `${BACKEND_URL}${API_BASE_URL}/payment/payment-fail`,
+    cancel_url: `${BACKEND_URL}${API_BASE_URL}/payment/payment-cancel`,
+    // ipn_url: `${BACKEND_URL}${API_BASE_URL}/payment/payment-ipn`,
     shipping_method: "Courier",
     product_name: "Computer.",
     product_category: "Electronic",
@@ -31,7 +30,7 @@ const payment = async (req, res) => {
     cus_state: "Dhaka",
     cus_postcode: "1000",
     cus_country: "Bangladesh",
-    cus_phone: "01711111111", 
+    cus_phone: "01711111111",
     cus_fax: "01711111111",
     ship_name: "Customer Name",
     ship_add1: "Dhaka",
@@ -68,8 +67,8 @@ const redirectClient = (path) => (req, res) => {
 
 // ---------payment success
 const paymentSuccess = redirectClient("/paymentSuccess");
-const paymentFail = redirectClient("/paymentFail");
-const paymentCancel = redirectClient("/paymentCancel");
+const paymentFail = redirectClient("/payment/payment-fail");
+const paymentCancel = redirectClient("/payment/payment-cancel");
 
 module.exports = {
   payment,

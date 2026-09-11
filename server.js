@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 8000;
 
 // ------dns 
 const dns = require("dns");
+const { authMiddleware } = require("./middleware/authMiddleware");
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(
 
 // ---------- Middleware 
 app.use(express.json());
+app.use(authMiddleware);
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // ---------- Routes 

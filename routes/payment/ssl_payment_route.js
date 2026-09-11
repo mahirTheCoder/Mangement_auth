@@ -10,9 +10,9 @@ const {
 } = require("../../controllers/payment/payment_controller");
 
 router.get('/check', payment );
-router.post("/paymentSuccess", paymentSuccess);
-router.post("/paymentFail", paymentFail);
-router.post("/paymentCancel", paymentCancel);
-// router.post("/paymentIpn", paymentIpn);
+router.post("/payment-success", paymentSuccess);
+router.post("/payment-fail", paymentFail);
+router.post("/payment-cancel", paymentCancel);
+// router.post("/payment-ipn", paymentIpn);
 
 module.exports = router;
