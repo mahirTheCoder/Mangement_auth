@@ -9,14 +9,12 @@ const BACKEND_URL =
   process.env.BACKEND_URL || `http://localhost:${process.env.PORT || 8000}`; // Replace with your backend URL
 const API_BASE_URL = process.env.API_BASE_URL || "/api/v1"; // Replace with your API base URL
 
-
 // -----------profile controllerp
 const payment = async (req, res) => {
-
   const data = {
     total_amount: 100,
     currency: "BDT",
-    tran_id: "REF123", // use unique tran_id for each api call
+    tran_id: `REF_${Date.now()}`,
     success_url: `${BACKEND_URL}${API_BASE_URL}/payment/success`,
     fail_url: `${BACKEND_URL}${API_BASE_URL}/payment/fail`,
     cancel_url: `${BACKEND_URL}${API_BASE_URL}/payment/cancel`,
@@ -47,11 +45,15 @@ const payment = async (req, res) => {
   sslcz
     .init(data)
     .then((apiResponse) => {
-      // Redirect the user to payment gateway
-      // let GatewayPageURL = apiResponse.GatewayPageURL;
-      // res.redirect(GatewayPageURL);
-      // console.log("Redirecting to: ", GatewayPageURL);
-      res.status(200).json(apiResponse);
+      console.log("SSLCommerz Response:", apiResponse);
+
+      const GatewayPageURL = apiResponse.GatewayPageURL;
+
+      res.status(200).json({
+        success: true,
+        message: "Payment initialized successfully",
+        data: apiResponse,
+      });
     })
     .catch((error) => {
       console.error("Error initializing payment:", error);

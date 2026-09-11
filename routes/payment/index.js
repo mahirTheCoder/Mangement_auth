@@ -12,6 +12,8 @@ router.use("/payment", sslpayments);
 
 // Payment initialize
 // এটা protected থাকবে
-router.post("/payment/init", authMiddleware, payment);
+router.post("/payment", authMiddleware, payment);
+// router.post("/payment/init", authMiddleware, payment);
+
 
 module.exports = router;
