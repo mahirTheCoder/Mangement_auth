@@ -31,7 +31,7 @@ const signup = async (req, res) => {
       password,
       role,
       otp,
-      otpExpires: Date.now() + 5 * 60 * 1000,
+      otpExpires: Date.now() + 10 * 60 * 1000,
       isApproved: role === "admin"
     });
 
